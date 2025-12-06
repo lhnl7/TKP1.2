@@ -3,20 +3,23 @@ import AVKit
 import PhotosUI
 
 struct ContentView: View {
-    @State private var videoURLs: [URL] = []
+
     @State private var selectedVideoURL: URL?
     @State private var showPicker = false
+    @State private var pickerItem: PhotosPickerItem?
 
     var body: some View {
         NavigationView {
             VStack {
+
                 if let url = selectedVideoURL {
                     VideoPlayer(player: AVPlayer(url: url))
-                        .frame(maxHeight: 300)
+                        .frame(height: 300)
+                        .cornerRadius(12)
+                        .padding()
                 } else {
                     Text("无视频\n点击右上角选择视频")
                         .multilineTextAlignment(.center)
-                        .font(.title3)
                         .foregroundColor(.gray)
                         .padding()
                 }
@@ -35,45 +38,43 @@ struct ContentView: View {
                 }
             }
             .photosPicker(isPresented: $showPicker,
-                          selection: Binding(
-                            get: { nil },
-                            set: { newItem in
-                                if let item = newItem {
-                                    loadVideo(item: item)
-                                }
-                            }),
+                          selection: $pickerItem,
                           matching: .videos)
+            .onChange(of: pickerItem) { newItem in
+                if let item = newItem {
+                    loadVideo(from: item)
+                }
+            }
         }
     }
 
-    func loadVideo(item: PhotosPickerItem) {
-        item.loadTransferable(type: VideoTransferable.self) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let transferable):
-                    if let transferable, let url = transferable.url {
-                        self.selectedVideoURL = url
+    private func loadVideo(from item: PhotosPickerItem) {
+        item.loadTransferable(type: VideoTransfer.self) { result in
+            switch result {
+            case .success(let video):
+                if let video = video {
+                    DispatchQueue.main.async {
+                        selectedVideoURL = video.url
                     }
-                case .failure(let error):
-                    print("加载失败:", error)
                 }
+            case .failure(let error):
+                print("读取失败:", error.localizedDescription)
             }
         }
     }
 }
 
-// 支持从相册导入视频
-struct VideoTransferable: Transferable {
+struct VideoTransfer: Transferable {
     let url: URL
 
     static var transferRepresentation: some TransferRepresentation {
-        FileRepresentation(contentType: .movie) { exporting in
-            SentTransferredFile(exporting.url)
+        FileRepresentation(contentType: .movie) { video in
+            SentTransferredFile(video.url)
         } importing: { received in
-            let tempURL = FileManager.default.temporaryDirectory
+            let temp = FileManager.default.temporaryDirectory
                 .appendingPathComponent("\(UUID().uuidString).mov")
-            try FileManager.default.copyItem(at: received.file, to: tempURL)
-            return VideoTransferable(url: tempURL)
+            try FileManager.default.copyItem(at: received.file, to: temp)
+            return VideoTransfer(url: temp)
         }
     }
 }
