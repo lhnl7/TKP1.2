@@ -1,0 +1,127 @@
+// !$*UTF8*$!
+{
+  archiveVersion = 1;
+  classes = {};
+  objectVersion = 60;
+  objects = {
+
+    /* Begin PBXProject section */
+    A1B2C3D4E5 = {
+      isa = PBXProject;
+      attributes = {
+        LastUpgradeCheck = 1600;
+      };
+      buildConfigurationList = CONFIG_LIST_PROJECT;
+      compatibilityVersion = "Xcode 16.0";
+      developmentRegion = en;
+      hasScannedForEncodings = 0;
+      knownRegions = (
+        en,
+      );
+      mainGroup = MAIN_GROUP;
+      productRefGroup = PRODUCT_GROUP;
+      projectDirPath = "";
+      targets = (
+        TARGET_ID,
+      );
+    };
+    /* End PBXProject section */
+
+    /* Begin PBXGroup section */
+    MAIN_GROUP = {
+      isa = PBXGroup;
+      children = (
+        PRODUCT_GROUP,
+        TKP_GROUP,
+      );
+      sourceTree = "<group>";
+    };
+    PRODUCT_GROUP = {
+      isa = PBXGroup;
+      children = (
+        APP_PRODUCT_REF,
+      );
+      name = Products;
+      sourceTree = "<group>";
+    };
+    TKP_GROUP = {
+      isa = PBXGroup;
+      children = (
+        TKP_APP_SWIFT,
+        CONTENT_SWIFT,
+        PLAYER_SWIFT,
+        INFO_PLIST_REF,
+      );
+      path = tkp;
+      sourceTree = "<group>";
+    };
+    /* End PBXGroup section */
+
+    /* Begin PBXFileReference section */
+    TKP_APP_SWIFT = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tkpApp.swift; sourceTree = "<group>"; };
+    CONTENT_SWIFT = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+    PLAYER_SWIFT = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+    INFO_PLIST_REF = { isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+    APP_PRODUCT_REF = { isa = PBXFileReference; explicitFileType = wrapper.application; path = tkp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    /* End PBXFileReference section */
+
+    /* Begin PBXSourcesBuildPhase section */
+    SOURCES_PHASE = {
+      isa = PBXSourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+        TKP_APP_BUILD_FILE,
+        CONTENT_BUILD_FILE,
+        PLAYER_BUILD_FILE,
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+    TKP_APP_BUILD_FILE = { isa = PBXBuildFile; fileRef = TKP_APP_SWIFT; };
+    CONTENT_BUILD_FILE = { isa = PBXBuildFile; fileRef = CONTENT_SWIFT; };
+    PLAYER_BUILD_FILE = { isa = PBXBuildFile; fileRef = PLAYER_SWIFT; };
+    /* End PBXSourcesBuildPhase section */
+
+    /* Begin PBXResourcesBuildPhase section */
+    RESOURCES_PHASE = {
+      isa = PBXResourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+    /* End PBXResourcesBuildPhase section */
+
+    /* Begin PBXFrameworksBuildPhase section */
+    FRAMEWORKS_PHASE = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+    /* End PBXFrameworksBuildPhase section */
+
+    /* Begin PBXNativeTarget section */
+    TARGET_ID = {
+      isa = PBXNativeTarget;
+      buildConfigurationList = TARGET_CONFIG_LIST;
+      buildPhases = (
+        SOURCES_PHASE,
+        FRAMEWORKS_PHASE,
+        RESOURCES_PHASE,
+      );
+      buildRules = ();
+      dependencies = ();
+      name = tkp;
+      productName = tkp;
+      productReference = APP_PRODUCT_REF;
+      productType = "com.apple.product-type.application";
+    };
+    /* End PBXNativeTarget section */
+
+    /* Begin XCBuildConfiguration section */
+    TARGET_DEBUG_CONFIG = { isa = XCBuildConfiguration; buildSettings = { INFOPLIST_FILE = tkp/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = com.example.tkp; PRODUCT_NAME = tkp; SWIFT_VERSION = 5.0; IPHONEOS_DEPLOYMENT_TARGET = 15.0; }; name = Debug; };
+    TARGET_RELEASE_CONFIG = { isa = XCBuildConfiguration; buildSettings = { INFOPLIST_FILE = tkp/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = com.example.tkp; PRODUCT_NAME = tkp; SWIFT_VERSION = 5.0; IPHONEOS_DEPLOYMENT_TARGET = 15.0; }; name = Release; };
+    TARGET_CONFIG_LIST = { isa = XCConfigurationList; buildConfigurations = ( TARGET_DEBUG_CONFIG, TARGET_RELEASE_CONFIG ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    CONFIG_LIST_PROJECT = { isa = XCConfigurationList; buildConfigurations = ( PROJECT_DEBUG_CONFIG, PROJECT_RELEASE_CONFIG ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    PROJECT_DEBUG_CONFIG = { isa = XCBuildConfiguration; buildSettings = {}; name = Debug; };
+    PROJECT_RELEASE_CONFIG = { isa = XCBuildConfiguration; buildSettings = {}; name = Release; };
+    /* End XCBuildConfiguration section */
+
+  };
+  rootObject = A1B2C3D4E5;
+}
